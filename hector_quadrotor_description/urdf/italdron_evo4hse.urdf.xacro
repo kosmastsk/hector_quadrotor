@@ -11,13 +11,9 @@
     <!-- Instantiate quadrotor_base_macro once (has no parameters atm) -->
     <xacro:quadrotor_base_macro />
 
-    <!-- Terrarange tower will be placed here -->
-    <!--
-    <xacro:include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
-    <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="scan" update_rate="40" ray_count="1081" min_angle="-135" max_angle="135">
-      <origin xyz="0.0 0.0 -0.097" rpy="${M_PI} 0 0"/>
-    </xacro:hokuyo_utm30lx>
-  -->
+    <!-- Terrarange Tower -->
+    <xacro:include filename="$(find teraranger_description)/urdf/teraranger_tower.urdf.xacro"/>
+    <teraranger_tower multi_hub="false" hub_id="0" parent="base_link" x="0.000" y="0.000" z="0.050" roll="0.0" pitch="0.0" yaw="0.0" />
 
     <!-- Forward facing camera (FPV) -->
     <xacro:include filename="$(find hector_quadrotor_description)/sensors/generic_camera.urdf.xacro" />
