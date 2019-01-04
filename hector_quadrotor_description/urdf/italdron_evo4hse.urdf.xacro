@@ -11,7 +11,7 @@
     <!-- Instantiate quadrotor_base_macro once (has no parameters atm) -->
     <xacro:quadrotor_base_macro />
 
-    <!-- Hokuyo UTM-30LX mounted upside down below the quadrotor body -->
+    <!-- Terrarange tower will be placed here -->
     <!--
     <xacro:include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
     <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="scan" update_rate="40" ray_count="1081" min_angle="-135" max_angle="135">
@@ -19,11 +19,10 @@
     </xacro:hokuyo_utm30lx>
   -->
 
-    <!-- Asus Xiton Live Pro -->
-<!--
-    <xacro:include filename="$(find hector_sensors_description)/urdf/asus_camera.urdf.xacro" />
-    <xacro:asus_camera name="camera" parent="base_link">
-      <origin xyz="0.1 0.0 -0.03" rpy="0 ${M_PI/9} 0"/>
-    </xacro:asus_camera>
--->
+    <!-- Forward facing camera (FPV) -->
+    <xacro:include filename="$(find hector_quadrotor_description)/sensors/generic_camera.urdf.xacro" />
+    <xacro:generic_camera name="front_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="10" res_x="640" res_y="480" image_format="R8G8B8" hfov="90">
+    <origin xyz="0.125 0 -0.17" rpy="0 0 0"/>
+    </xacro:generic_camera>
+
 </robot>
